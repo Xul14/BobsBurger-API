@@ -48,14 +48,14 @@ class card extends HTMLElement {
         }
         
         .card:hover{
-            box-shadow: 0px 0px 18px #cfcc0e;
+             box-shadow: 0px 0px 18px #cfcc0e;    
         }
         
         .card__image{
             width: 200px;
             height: 300px;
             object-fit: contain;
-            /* background-image: url(${this.photo}); */
+            background-image: url(${this.photo});
         }
         `
         return css
@@ -73,7 +73,7 @@ class card extends HTMLElement {
         nameCharacter.classList.add('card__name')
         nameCharacter.textContent = this.name
 
-        card.append( image, nameCharacter)
+        card.append(image, nameCharacter)
 
         return card
     }

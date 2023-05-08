@@ -1,7 +1,9 @@
 'use strict'
 
+import { loadCards } from "./app.js"
+
 const routes = {
-    // '/': '/pages/home.html',
+    '/': '/pages/home.html',
     '/characters': '/pages/characters.html',
     '/episode': '/pages/episode.html',
 }
@@ -17,6 +19,11 @@ const route = async() => {
 
     document.getElementById('main_content').innerHTML = html
 
+    if (window.location.pathname == '/') {
+        loadCards()
+    } else if (window.location.pathname == '/characters') {
+        loadCards()
+    }
 }
 
 window.route = route

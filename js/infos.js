@@ -1,18 +1,19 @@
 'use strict'
 
-import './router.js'
 import { getCharacters } from './api.js'
+
+const buttonExit = document.getElementById('exit')
+
+buttonExit.addEventListener('click', () => {
+    window.location.href = '../pages/home.html'
+})
 
 const carregarPersonagens = await getCharacters()
 
 const carregarCards = (character) => {
 
-    const container = document.createElement('a')
+    const container = document.createElement('div')
     container.classList.add('card')
-    container.setAttribute('href', '../pages/infos.html')
-    container.addEventListener('click', () => {
-        localStorage.setItem('characterId', character.id)
-    })
 
     const image = document.createElement('img')
     image.classList.add('card__image')
