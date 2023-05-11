@@ -12,6 +12,11 @@ const carregarCards = (character) => {
     container.setAttribute('href', '../pages/infos.html')
     container.addEventListener('click', () => {
         localStorage.setItem('characterId', character.id)
+        localStorage.setItem('characterImg', character.image)
+        localStorage.setItem('characterName', character.name)
+        localStorage.setItem('characterGender', character.gender)
+        localStorage.setItem('characterOccupation', character.occupation)
+        localStorage.setItem('characterEpisode', character.firstEpisode)
     })
 
     const image = document.createElement('img')

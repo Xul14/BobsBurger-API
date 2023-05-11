@@ -1,6 +1,13 @@
 'use strict'
 
-import { getCharacters } from './api.js'
+import { getCharactersById } from './api.js'
+
+let idCharacter = localStorage.getItem('characterId')
+let imgCharacter = localStorage.getItem('characterImg')
+let nameCharacter = localStorage.getItem('characterName')
+let genderCharacter = localStorage.getItem('characterGender')
+let occupationCharacter = localStorage.getItem('characterOccupation')
+let episodeCharacter = localStorage.getItem('characterEpisode')
 
 const buttonExit = document.getElementById('exit')
 
@@ -8,32 +15,72 @@ buttonExit.addEventListener('click', () => {
     window.location.href = '../pages/home.html'
 })
 
-const carregarPersonagens = await getCharacters()
+const carregarPersonagem = await getCharactersById(idCharacter)
 
-const carregarCards = (character) => {
+const carregarCard = () => {
+
+    const containerCard = document.createElement('div')
+    containerCard.classList.add('container-infos')
+
+    const image = document.createElement('img')
+    image.classList.add('card__image')
+    image.src = imgCharacter
 
     const container = document.createElement('div')
     container.classList.add('card')
 
-    const image = document.createElement('img')
-    image.classList.add('card__image')
-    image.src = `${character.image}`
+    const nameC = document.createElement('p')
+    nameC.classList.add('card__name')
+    nameC.textContent = nameCharacter
 
-    const nameCharacter = document.createElement('p')
-    nameCharacter.classList.add('card__name')
-    nameCharacter.textContent = character.name
+    const genderLi = document.createElement('li')
+    genderLi.classList.add('li-gender')
 
-    container.append(image, nameCharacter)
+    const gender = document.createElement('p')
+    gender.classList.add('gender')
+    gender.textContent = "Gender"
 
-    return container
+    const genderC = document.createElement('p')
+    genderC.classList.add('card_gender')
+    genderC.textContent = genderCharacter
+    
+    const occupationLi = document.createElement('li')
+    occupationLi.classList.add('li-gender')
+
+    const occupation = document.createElement('p')
+    occupation.classList.add('occupation')
+    occupation.textContent = "Ocuppation"
+
+    const occupationC = document.createElement('p')
+    occupationC.classList.add('card_occupation')
+    occupationC.textContent = occupationCharacter
+    
+    const episodeLi = document.createElement('li')
+    episodeLi.classList.add('li-gender')
+
+    const episode = document.createElement('p')
+    episode.classList.add('episode')
+    episode.textContent = "Episode"
+
+    const episodeC = document.createElement('p')
+    episodeC.classList.add('card_episode')
+    episodeC.textContent = episodeCharacter
+
+    containerCard.append(image, container)
+    container.append(nameC, genderLi, occupationLi, episodeLi)
+    genderLi.append(gender, genderC)
+    occupationLi.append(occupation, occupationC)
+    episodeLi.append(episode, episodeC)
+
+    return containerCard
 
 }
 
-export const loadCards = () => {
-    const container = document.getElementById('container-characters')
-    const character = carregarPersonagens.map(carregarCards)
+export const loadCardInfos = () => {
+    const containerLoad = document.getElementById('container-infos')
+    const character = carregarCard(carregarPersonagem)
 
-    container.replaceChildren(...character)
+    containerLoad.replaceChildren(character)
 }
 
-// loadCards()
+loadCardInfos()
