@@ -17,6 +17,7 @@ li {
 body {
     height: 100vh;
     display: grid;
+    background-color: #1d1a1afb;
     grid-template-rows: 120px 1fr;
     font-family: 'Times New Roman', Times, serif, sans-serif;
 }
@@ -267,7 +268,7 @@ body {
     }
 
     .container-characters{
-        height: 100vh;
+        height: 100%;
     }
 
     .container-episode{
